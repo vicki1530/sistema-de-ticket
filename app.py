@@ -6,8 +6,8 @@ from email.mime.multipart import MIMEMultipart
 
 app = Flask(__name__)
 
-GMAIL_USER = "igurivictoria@gmail.com"
-GMAIL_PASS = "pxhuazeswxeiwuio" 
+GMAIL_USER = "gestioneventocontrasena12@gmail.com"
+GMAIL_PASS = "jlrwsofpaxaksxoq" 
 
 @app.route('/')
 def home():
