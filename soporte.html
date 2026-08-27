@@ -17,10 +17,10 @@
             min-height: 100vh;
         }
         .contenedor-formulario {
-            background-color: #04047f;
+            background-color: #03034e;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 500px;
             box-sizing: border-box;
@@ -52,6 +52,7 @@
         }
         input[type="text"],
         input[type="email"],
+        input[type="file"],
         select,
         textarea {
             background-color: #181825;
@@ -62,6 +63,10 @@
             font-size: 15px;
             outline: none;
             transition: border-color 0.3s ease;
+        }
+        input[type="file"] {
+            padding: 8px;
+            cursor: pointer;
         }
         input:focus,
         select:focus,
@@ -97,55 +102,61 @@
 
     <div class="contenedor-formulario">
         <h2>Centro de Soporte</h2>
-<p class="subtitulo">Reportá un problema en la plataforma de Eventos de la UTN.</p>
+        <p class="subtitulo">Reportá un problema en la plataforma de Eventos de la UTN.</p>
 
-        <form action="/enviar-ticket" method="POST">
+        <form action="/enviar-ticket" method="POST" enctype="multipart/form-data">
             <div class="grupo-input">
-                <label for="nombre">Nombre Completo:</label>
+                <label for="nombre">Nombre Completo *</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre y Apellido" required>
             </div>
 
             <div class="grupo-input">
-                <label for="email">Tu Correo Electrónico:</label>
+                <label for="legajo">Legajo o DNI *</label>
+                <input type="text" id="legajo" name="legajo" placeholder="Ej: 49500 o DNI" required>
+            </div>
+
+            <div class="grupo-input">
+                <label for="email">Tu Correo Electrónico *</label>
                 <input type="email" id="email" name="email" placeholder="Ej: tu_correo@gmail.com" required>
             </div>
+            
 
             <div class="grupo-input">
-    <label for="categoria">Seleccioná el problema:</label>
-
-<select id="categoria" name="categoria" required>
-    <option value="" disabled selected>Seleccioná una opción</option>
-
-    <option value="No puedo iniciar sesión">
-        No puedo iniciar sesión
-    </option>
-
-    <option value="No puedo inscribirme a un evento">
-        No puedo inscribirme a un evento
-    </option>
-
-    <option value="No puedo ver mi código QR">
-        No puedo ver mi código QR
-    </option>
-
-    <option value="No recibí el correo con el QR">
-        No recibí el correo con el QR
-    </option>
-
-    <option value="Problema con mis datos personales">
-        Problema con mis datos personales
-    </option>
-
-    <option value="Otro">
-        Otro problema
-    </option>
-</select>
+                <label for="prioridad">Gravedad del problema *</label>
+                <select id="prioridad" name="prioridad" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="baja"> Baja </option>
+                    <option value="media"> Media </option>
+                    <option value="alta"> Alta </option>
+                </select>
+            </div>
+            
+            <div class="grupo-input">
+                <label for="categoria">Seleccioná el problema *</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="" disabled selected>Seleccioná una opción</option>
+                    <option value="No puedo iniciar sesión">No puedo iniciar sesión</option>
+                    <option value="No puedo inscribirme a un evento">No puedo inscribirme a un evento</option>
+                    <option value="No puedo ver mi código QR">No puedo ver mi código QR</option>
+                    <option value="No recibí el correo con el QR">No recibí el correo con el QR</option>
+                    <option value="Problema con mis datos personales">Problema con mis datos personales</option>
+                    <option value="Otro">Otro problema</option>
+                </select>
             </div>
 
             <div class="grupo-input">
-                <label for="descripcion">Descripción problema:</label>
+                <label for="descripcion">Descripción problema *</label>
                 <textarea id="descripcion" name="descripcion" rows="5" placeholder="Describir tu Problema" required></textarea>
             </div>
+
+             <div>
+
+                <label for="adjunto">Adjuntar captura o imagen (Opcional):</label>
+                <input type="file" id="adjunto" name="adjunto" accept="image/*">
+
+            </div>
+          <br>
+          <br>
 
             <button type="submit" class="btn-enviar">Enviar Ticket</button>
         </form>
